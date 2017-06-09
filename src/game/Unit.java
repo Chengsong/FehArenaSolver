@@ -29,7 +29,7 @@ public class Unit {
 	private final int range; // range 0 means no weapon
 	private final Triangle type;
 	private final Movement moveType;
-	private final boolean isHealer;
+	private final double classModifier;
 	
 	private int currentHP;
 	private int skillCharge;
@@ -48,7 +48,7 @@ public class Unit {
 		this.range = b.range;
 		this.type = b.type;
 		this.moveType = b.moveType;
-		this.isHealer = b.isHealer;
+		this.classModifier = b.classModifier;
 		this.currentHP = stats[HP];
 		this.skillCharge = 0;
 	}
@@ -135,7 +135,7 @@ public class Unit {
 		private int range;
 		private Triangle type;
 		private Movement moveType;
-		private boolean isHealer;
+		private double classModifier;
 		private AssistSkill assist;
 		private SpecialSkill special;
 		
@@ -149,8 +149,7 @@ public class Unit {
 			this.moveType = moveType;
 			this.skills = new HashMap<>();
 			this.stats = new int[5];
-			this.assist = null;
-			this.special = null;
+			this.classModifier = 1;
 		}
 		
 		/**
@@ -227,7 +226,7 @@ public class Unit {
 		 * @return this
 		 */
 		public Builder isHealer() {
-			isHealer = true;
+			classModifier = 0.5;
 			return this;
 		}
 		
