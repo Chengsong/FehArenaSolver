@@ -25,7 +25,7 @@ public enum SpecialSkill {
 	 * @param skill
 	 * @return the skill charge
 	 */
-	public int getCharge(SpecialSkill skill) {
+	public static int getCharge(SpecialSkill skill) {
 		return skillCharges.get(skill);
 	}
 }

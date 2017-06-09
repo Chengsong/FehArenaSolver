@@ -22,7 +22,7 @@ public enum Skill {
 	 * Returns a list of weapon skills
 	 * @return a list of weapon skills
 	 */
-	public List<Skill> getWeaponSkills() {
+	public static List<Skill> getWeaponSkills() {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -30,7 +30,7 @@ public enum Skill {
 	 * Returns a list of A skills
 	 * @return a list of A skills
 	 */
-	public List<Skill> getASkills() {
+	public static List<Skill> getASkills() {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -38,7 +38,7 @@ public enum Skill {
 	 * Returns a list of B skills
 	 * @return a list of B skills
 	 */
-	public List<Skill> getBSkills() {
+	public static List<Skill> getBSkills() {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -46,7 +46,7 @@ public enum Skill {
 	 * Returns a list of C skills
 	 * @return a list of C skills
 	 */
-	public List<Skill> getCSkills() {
+	public static List<Skill> getCSkills() {
 		throw new UnsupportedOperationException();
 	}
 }
