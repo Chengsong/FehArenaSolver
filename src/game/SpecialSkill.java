@@ -19,4 +19,13 @@ public enum SpecialSkill {
 	public String toString() {
 		return Util.capitalize(this.name());
 	}
+	
+	/**
+	 * Returns the charge turn of the given skill
+	 * @param skill
+	 * @return the skill charge
+	 */
+	public int getCharge(SpecialSkill skill) {
+		return skillCharges.get(skill);
+	}
 }
