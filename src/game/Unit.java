@@ -36,11 +36,12 @@ public class Unit {
 	private static final int SPD = 4;
 	private static final String NONE = "NONE";
 	
-	private final Map<String, Integer> skills; // <skill name, skill level>
+	private final Map<String, Integer> skills; // <skill name, skill level>, includes weapon skill
 	private final String assist;
 	private final String special;
 	private final int[] stats; // hp, atk, def, res, spd
-	private final int[] statChanges; // hp, atk, def, res, spd
+	private final int[][] statChanges; 	// statChanges[0]: changes that only lasts for one battle, 
+										// statChanges[1]: changes that lasts throughout the turn
 	private final Set<Debuff> debuffs;
 	private final int range; // range 0 means no weapon
 	private final Triangle type;
@@ -59,7 +60,7 @@ public class Unit {
 		this.assist = b.assist;
 		this.special = b.special;
 		this.stats = b.stats;
-		this.statChanges = new int[5];
+		this.statChanges = new int[2][5];
 		this.debuffs = new HashSet<>();
 		this.range = b.range;
 		this.type = b.type;
@@ -76,6 +77,24 @@ public class Unit {
 	 */
 	public int fight(Unit enemy) {
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Attacks the enemy unit, return whether the enemy unit is alive
+	 * @param enemy the enemy unit
+	 * @return true iff enemy is alive
+	 */
+	private boolean attack(Unit enemy) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Apply the given debuff to given enemy
+	 * @param enemy the enemy unit
+	 * @param debuff the debuff effect
+	 */
+	private void applyDebuff(Unit enemy, Debuff debuff) {
+		enemy.debuffs.add(debuff);
 	}
 	
 	/**
@@ -113,10 +132,19 @@ public class Unit {
 		throw new UnsupportedOperationException();
 	}
 	
+	/**
+	 * Returns whether the unit is alive
+	 * @return true iff the unit's HP > 0
+	 */
+	public boolean isAlive() {
+		return currentHP > 0;
+	}
+	
 	// ----- STATIC CODE BELOW -----
 	
 	/**
 	 * Helper method that returns the string with its first letter capitalized
+	 * @requires s.length() > 0
 	 * @param s the input string
 	 * @return the string with its first letter capitalized
 	 */
@@ -128,9 +156,9 @@ public class Unit {
 	 * Builder for Unit
 	 */
 	public static class Builder {
-		private Map<String, Integer> skills; // <skill name, skill level>
-		private int[] stats; // hp, atk, def, res, spd
-		private int range; // range 0 means no weapon
+		private Map<String, Integer> skills;
+		private int[] stats;
+		private int range;
 		private Triangle type;
 		private Movement moveType;
 		private boolean isHealer;
