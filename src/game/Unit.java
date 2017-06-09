@@ -18,11 +18,10 @@ public class Unit {
 	private static final int DEF = 2;
 	private static final int RES = 3;
 	private static final int SPD = 4;
-	private static final String NONE = "NONE";
 	
 	private final Map<Skill, Integer> skills; // <skill name, skill level>, includes weapon skill
-	private final String assist;
-	private final String special;
+	private final AssistSkill assist;
+	private final SpecialSkill special;
 	private final int[] stats; // hp, atk, def, res, spd
 	private final int[][] statChanges; 	// statChanges[0]: changes that only lasts for one battle, 
 										// statChanges[1]: changes that lasts throughout the turn
@@ -137,8 +136,8 @@ public class Unit {
 		private Triangle type;
 		private Movement moveType;
 		private boolean isHealer;
-		private String assist;
-		private String special;
+		private AssistSkill assist;
+		private SpecialSkill special;
 		
 		/**
 		 * Creates a base unit with specified weapon and movement types
@@ -150,8 +149,8 @@ public class Unit {
 			this.moveType = moveType;
 			this.skills = new HashMap<>();
 			this.stats = new int[5];
-			this.assist = NONE;
-			this.special = NONE;
+			this.assist = null;
+			this.special = null;
 		}
 		
 		/**
@@ -198,7 +197,7 @@ public class Unit {
 		 * @param skillName
 		 * @return this
 		 */
-		public Builder assist(String skillName) {
+		public Builder assist(AssistSkill skillName) {
 			assist = skillName;
 			return this;
 		}
@@ -208,7 +207,7 @@ public class Unit {
 		 * @param skillName
 		 * @return this
 		 */
-		public Builder special(String skillName) {
+		public Builder special(SpecialSkill skillName) {
 			special = skillName;
 			return this;
 		}
