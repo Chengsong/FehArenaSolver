@@ -9,22 +9,6 @@ import java.util.Set;
  * Class that represents a Unit in FEH, which is able to fight against another unit.
  */
 public class Unit {
-	public enum Triangle {
-		RED, BLUE, GREEN, COLORLESS;
-		
-		@Override
-		public String toString() {
-			return capitalize(this.name().toLowerCase());
-		}
-	}
-	public enum Movement {
-		INFANTRY, ARMOR, HORSE, FLIER;
-		
-		@Override
-		public String toString() {
-			return capitalize(this.name().toLowerCase());
-		}
-	}
 	private enum Debuff {
 		GRAVITY, PANIC
 	}
@@ -36,7 +20,7 @@ public class Unit {
 	private static final int SPD = 4;
 	private static final String NONE = "NONE";
 	
-	private final Map<String, Integer> skills; // <skill name, skill level>, includes weapon skill
+	private final Map<Skill, Integer> skills; // <skill name, skill level>, includes weapon skill
 	private final String assist;
 	private final String special;
 	private final int[] stats; // hp, atk, def, res, spd
@@ -142,21 +126,12 @@ public class Unit {
 	
 	// ----- STATIC CODE BELOW -----
 	
-	/**
-	 * Helper method that returns the string with its first letter capitalized
-	 * @requires s.length() > 0
-	 * @param s the input string
-	 * @return the string with its first letter capitalized
-	 */
-	private static String capitalize(String s) {
-		return s.substring(0, 1).toUpperCase() + s.substring(1);
-	}
 	
 	/**
 	 * Builder for Unit
 	 */
 	public static class Builder {
-		private Map<String, Integer> skills;
+		private Map<Skill, Integer> skills;
 		private int[] stats;
 		private int range;
 		private Triangle type;
@@ -202,7 +177,7 @@ public class Unit {
 		 * @param skillName
 		 * @return this
 		 */
-		public Builder skill(String skillName) {
+		public Builder skill(Skill skillName) {
 			return skill(skillName, 0);
 		}
 		
@@ -213,7 +188,7 @@ public class Unit {
 		 * @param skillLevel
 		 * @return this
 		 */
-		public Builder skill(String skillName, int skillLevel) {
+		public Builder skill(Skill skillName, int skillLevel) {
 			skills.put(skillName, skillLevel);
 			return this;
 		}
