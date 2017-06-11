@@ -68,7 +68,12 @@ public class Unit {
 	 * @return true iff enemy is alive
 	 */
 	private boolean attack(Unit enemy) {
-		throw new UnsupportedOperationException();
+		if (skillCharge == SpecialSkill.getCharge(special)) {
+			switch (special) {
+			
+			}
+		}
+		return true;
 	}
 	
 	/**
