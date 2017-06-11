@@ -29,7 +29,7 @@ public class Unit {
 	private final int range; // range 0 means no weapon
 	private final Triangle type;
 	private final Movement moveType;
-	private final double classModifier;
+	private final double classModifier; // default 1, 0.5 for healer
 	
 	private int currentHP;
 	private int skillCharge;
@@ -95,7 +95,7 @@ public class Unit {
 		case ARMOR: return 1;
 		case HORSE: return 3;
 		case FLIER: return 2;
-		default: throw new IllegalStateException();
+		default: throw new IllegalStateException("Unrecognized movement type");
 		}
 	}
 	
